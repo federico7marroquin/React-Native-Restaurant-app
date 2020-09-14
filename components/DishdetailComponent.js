@@ -10,8 +10,9 @@ function RenderDish(props) {
         if (dish != null) {
             return(
                 <Card>
-                   <Card.FeaturedTitle>{dish.name}</Card.FeaturedTitle>
-                    <Card.Image source={ require('./images/uthappizza.png')}/>
+                    <Card.Image style= {{ alignItems: 'center', justifyContent: 'center' }} source={ require('./images/uthappizza.png')}>
+                        <Card.FeaturedTitle >{dish.name}</Card.FeaturedTitle>
+                    </Card.Image>
                     <Text style={{margin: 10}}>
                         {dish.description}
                     </Text>
