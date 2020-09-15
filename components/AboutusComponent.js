@@ -53,15 +53,16 @@ class AboutUs extends Component {
         return (
             <View>
                 <History/>
-                <Card>
+                <Card nestedScrollEnabled ={true}>
                     <Card.Title>Corporate Leadership</Card.Title>
-                    <Card.Divider></Card.Divider>
-                    <FlatList   inverted
-                        data={this.state.leaders}
-                        keyExtractor={ (item, index) => index.toString()}
-                        renderItem={renderLeaderItem}
-    
-                        />
+                    <Card.Divider/>
+                    <View>
+                        <FlatList  inverted
+                            data={this.state.leaders}
+                            keyExtractor={ (item, index) => index.toString()}
+                            renderItem={renderLeaderItem}
+                            />
+                    </View>
                 </Card>
             </View>
         );
