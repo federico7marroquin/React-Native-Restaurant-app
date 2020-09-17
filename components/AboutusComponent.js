@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import { FlatList, View, Text  } from 'react-native';
-import { Card,ListItem, Avatar } from 'react-native-elements';
+import { FlatList, View, ScrollView, Text  } from 'react-native';
+import { Card,ListItem, Avatar  } from 'react-native-elements';
 import {connect} from 'react-redux';
 import {baseUrl} from '../shared/baseUrl';
+import {Loading} from './LoadingComponent';
 
 const mapStateToProps = state => {
     return {
@@ -46,22 +47,48 @@ class AboutUs extends Component {
         };
 
         const { navigate} = this.props.navigation;
-        return (
-            <View>
-                <History/>
-                <Card nestedScrollEnabled ={true}>
-                    <Card.Title>Corporate Leadership</Card.Title>
-                    <Card.Divider/>
-                    <View>
-                        <FlatList  inverted
-                            data={this.props.leaders.leaders}
-                            keyExtractor={ (item, index) => index.toString()}
-                            renderItem={renderLeaderItem}
-                            />
-                    </View>
-                </Card>
-            </View>
-        );
+
+        if (this.props.leaders.isLoading){
+            return(
+                <ScrollView>
+                    <History />
+                    <Card>
+                        <Card.Title>Corporate Leadership</Card.Title>
+                        <Loading/>
+                    </Card>
+                </ScrollView>
+            );
+        }
+        else if(this.props.leaders.errMess){
+            return(
+                <ScrollView>
+                    <History />
+                    <Card>
+                        <Card.Title>Corporate Leadership</Card.Title>
+                        <Text>{this.props.leaders.errMess}</Text>
+                    </Card>
+                </ScrollView>
+            );
+
+        }
+        else {
+            return (
+                <ScrollView>
+                    <History/>
+                    <Card nestedScrollEnabled ={true}>
+                        <Card.Title>Corporate Leadership</Card.Title>
+                        <Card.Divider/>
+                        <View>
+                            <FlatList  inverted
+                                data={this.props.leaders.leaders}
+                                keyExtractor={ (item, index) => index.toString()}
+                                renderItem={renderLeaderItem}
+                                />
+                        </View>
+                    </Card>
+                </ScrollView>
+            );
+        }
     }
 }
 
