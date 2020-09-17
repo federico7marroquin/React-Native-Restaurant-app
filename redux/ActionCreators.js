@@ -141,3 +141,10 @@ export const leadersLoading = () => ({
     type: ActionTypes.LEADERS_LOADING
 });
 
+export const postFavorite = (dishId) => (dispatch) =>{
+     dispatch(addFavorite(dishId));
+};
+export const addFavorite = (dishId) => ({
+    type: ActionTypes.ADD_FAVORITE,
+    payload: dishId
+});
