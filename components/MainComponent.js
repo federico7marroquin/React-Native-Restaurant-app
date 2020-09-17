@@ -12,6 +12,22 @@ import Home from './HomeComponent';
 import ContactUs from './ContactComponent';
 import AboutUs from './AboutusComponent';
 
+import {connect} from 'react-redux';
+import { fetchDishes, fetchComments, fetchPromos, fetchLeaders} from '../redux/ActionCreators';
+
+
+const mapStateToProps = state => {
+    return {
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    fetchDishes: () => dispatch(fetchDishes()),
+    fetchComments: () => dispatch(fetchComments()),
+    fetchPromos: () => dispatch(fetchPromos()),
+    fetchLeaders: () => dispatch(fetchLeaders())
+});
+
 const MenuNavigator = createStackNavigator();
 const HomeNavigator = createStackNavigator();
 const AboutNavigator = createStackNavigator();
@@ -59,7 +75,6 @@ function MenuNavigatorScreen() {
         </MenuNavigator.Navigator>
     );
 }
-
 function HomeNavigatorScreen() {
     return(
         <HomeNavigator.Navigator
@@ -180,8 +195,13 @@ function CustomDrawerContent(props) {
   }
 class Main extends Component {
 
+    componentDidMount() {
+        this.props.fetchDishes();
+        this.props.fetchComments();
+        this.props.fetchPromos();
+        this.props.fetchLeaders();
+    }
   render() {
- 
     return (
     <NavigationContainer>
       <Drawer.Navigator  drawerContent= {CustomDrawerContent} drawerStyle={{backgroundColor: '#D1C4E9'}} initialRouteName="Home">
@@ -223,4 +243,4 @@ const styles = StyleSheet.create({
     }
 })
   
-export default Main;
+export default connect(mapStateToProps,mapDispatchToProps)(Main);

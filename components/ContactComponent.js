@@ -2,11 +2,11 @@ import React from 'react';
 import {Card} from 'react-native-elements';
 import { Text, View } from 'react-native';
 
-function ContacttUs(){
+function ContactUs(){
 
     return(
         <Card>
-            <Card.Title style={{}}>Contact Information</Card.Title>
+            <Card.Title>Contact Information</Card.Title>
             <Card.Divider></Card.Divider>
             <Text>121, Clear Water Bay Road</Text>
             <Text>Clear Water Bay, Kowloon</Text>
@@ -19,4 +19,4 @@ function ContacttUs(){
     );
 }
 
-export default ContacttUs;
+export default ContactUs;
