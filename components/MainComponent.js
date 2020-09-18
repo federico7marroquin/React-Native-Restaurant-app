@@ -11,6 +11,7 @@ import Dishdetail from './DishdetailComponent';
 import Home from './HomeComponent';
 import ContactUs from './ContactComponent';
 import AboutUs from './AboutusComponent';
+import Reservation from './ReservationComponent';
 
 import {connect} from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders} from '../redux/ActionCreators';
@@ -32,6 +33,7 @@ const MenuNavigator = createStackNavigator();
 const HomeNavigator = createStackNavigator();
 const AboutNavigator = createStackNavigator();
 const ContactNavigator = createStackNavigator();
+const ReservationNavigator = createStackNavigator();
 
 
 
@@ -164,6 +166,36 @@ function AboutNavigatorScreen() {
     );
 }
 
+function ReservationNavigatorScreen() {
+    return(
+        <ReservationNavigator.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: "#512DA8"
+                },
+                headerTintColor: "#fff",
+                headerTitleStyle: {
+                    color: "#fff"            
+                }
+            }}
+        >
+            <ReservationNavigator.Screen
+                name="Reservation"
+                component={Reservation}
+                options ={({navigation})=>
+                ({
+                    headerLeft: () => (
+                    <Icon name='menu' size ={24}
+                    color='white'
+                    onPress={()=> navigation.toggleDrawer()}
+                    iconStyle={{marginLeft: 10}}
+                   />
+                   )})}
+            />          
+        </ReservationNavigator.Navigator>
+    );
+}
+
 const Drawer  = createDrawerNavigator();
 
 function selectIcon(iconName,tintColor){
@@ -213,6 +245,8 @@ class Main extends Component {
         options={{drawerIcon: ({tintColor})=> selectIcon("list",tintColor)}}/>
         <Drawer.Screen name="Contact Us" component={ContactNavigatorScreen}
          options={{drawerIcon: ({tintColor})=> selectIcon("address-card",tintColor)}}/>
+         <Drawer.Screen name="Reservations" component={ReservationNavigatorScreen}
+         options={{drawerIcon: ({tintColor})=> selectIcon("cutlery",tintColor)}}/>
       </Drawer.Navigator>
     </NavigationContainer>
     );
