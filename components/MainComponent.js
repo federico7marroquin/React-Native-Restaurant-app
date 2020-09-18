@@ -180,7 +180,7 @@ function ReservationNavigatorScreen() {
             }}
         >
             <ReservationNavigator.Screen
-                name="Reservation"
+                name="Reserve Table"
                 component={Reservation}
                 options ={({navigation})=>
                 ({

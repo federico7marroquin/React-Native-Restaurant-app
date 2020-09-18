@@ -8,9 +8,9 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@react-native-community/datetimepicker": "^3.0.2",
+    "@react-native-community/datetimepicker": "2.4.0",
     "@react-native-community/masked-view": "^0.1.6",
-    "@react-native-community/picker": "^1.7.1",
+    "@react-native-community/picker": "1.6.0",
     "@react-navigation/drawer": "^5.9.0",
     "@react-navigation/material-bottom-tabs": "^5.2.16",
     "@react-navigation/native": "^5.7.3",
