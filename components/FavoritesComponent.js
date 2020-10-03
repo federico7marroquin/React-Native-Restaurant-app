@@ -6,6 +6,7 @@ import {baseUrl} from '../shared/baseUrl';
 import {Loading} from './LoadingComponent';
 import {SwipeListView, SwipeRow}  from 'react-native-swipe-list-view';
 import {deleteFavorite} from '../redux/ActionCreators';
+import * as Animatable from 'react-native-animatable';
 
 const mapStateToProps = state => {
     return {
@@ -26,7 +27,8 @@ class Favorites extends Component{
         const renderMenuItem = ({item, index}) => {
             
             return(
-                
+                <Animatable.View animation ="fadeInRightBig"
+                duration = {2000} >
                     <ListItem
                         key={index}
                         hideChevron={true}
@@ -38,6 +40,7 @@ class Favorites extends Component{
                             <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
                         </ListItem.Content>
                     </ListItem>
+                </Animatable.View>
                
             );
         }
