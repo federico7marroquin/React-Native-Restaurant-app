@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { FlatList, View, Text, TouchableHighlight, TouchableOpacity, StyleSheet } from 'react-native';
+import { FlatList, Alert, View, Text, TouchableHighlight, TouchableOpacity, StyleSheet } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
 import {connect} from 'react-redux';
 import {baseUrl} from '../shared/baseUrl';
@@ -54,8 +54,27 @@ class Favorites extends Component{
             return(
                 <View style={styles.rowBack}>
                     <TouchableOpacity  
-                         style={[styles.backRightBtn, styles.backRightBtnRight]}
-                        onPress={() =>this.props.deleteFavorite(item.id)}>
+                        style={[styles.backRightBtn, styles.backRightBtnRight]}
+                        onPress={() =>{
+                            Alert.alert(
+                                'Delete Favorite',
+                                'Are you sure you wish to delete the favorite dish ' + item.name + '?',
+                                [
+                                    {
+                                        text: 'Cancel', 
+                                        onPress: ()=> console.log(item.name +' Not Deleted'),
+                                        style: 'cancel'
+                                    },
+                                    {
+                                        text: 'OK', 
+                                        onPress: ()=>this.props.deleteFavorite(item.id),
+                                    },
+
+                                ],
+                                {cancelable: false }
+                            );
+                            }}
+                        >
                         <Text style={styles.backTextWhite}>Delete</Text>
                     </TouchableOpacity>
                 </View>
